@@ -1960,5 +1960,473 @@ export const QUESTIONS = [
     ],
     "a": "A",
     "e": "Builder improves readability and construction control."
+  },
+  {
+    "t": 0,
+    "q": "מה יהיה הפלט?\n\nint x=1;\nfor(int i=0;i<2;i++) x = x++ + ++x;\nSystem.out.println(x);",
+    "o": [
+      "5",
+      "4",
+      "6",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "איטרציה 1: 1->3, איטרציה 2: 3->5."
+  },
+  {
+    "t": 1,
+    "q": "מה יודפס?\n\nint n = 0xA + 010 + 0b10;\nSystem.out.println(n);",
+    "o": [
+      "20",
+      "18",
+      "16",
+      "22"
+    ],
+    "a": "A",
+    "e": "10 + 8 + 2 = 20."
+  },
+  {
+    "t": 2,
+    "q": "מה יהיה הפלט?\n\nint[] a={1};\nint[] b=a;\nb[0]=7;\nSystem.out.println(a[0]);",
+    "o": [
+      "7",
+      "1",
+      "0",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "אותו מערך דרך שני references."
+  },
+  {
+    "t": 3,
+    "q": "מה יהיה הפלט?\n\nclass A{String f(){return \"A\";}}\nclass B extends A{String f(){return \"B\";}}\nA x=new B();\nSystem.out.println(x.f());",
+    "o": [
+      "B",
+      "A",
+      "שגיאת קומפילציה",
+      "NullPointerException"
+    ],
+    "a": "A",
+    "e": "dynamic dispatch."
+  },
+  {
+    "t": 4,
+    "q": "מה יודפס?\n\nObject o=null;\nSystem.out.println(o instanceof String);",
+    "o": [
+      "false",
+      "true",
+      "NullPointerException",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "instanceof על null מחזיר false."
+  },
+  {
+    "t": 5,
+    "q": "מה יהיה הפלט?\n\nclass C{static int c; C(){c++;}}\nnew C(); new C();\nSystem.out.println(C.c);",
+    "o": [
+      "2",
+      "1",
+      "0",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "מונה סטטי מצטבר."
+  },
+  {
+    "t": 6,
+    "q": "מה יקרה?\n\nclass C{ C(int x){} }\nnew C();",
+    "o": [
+      "שגיאת קומפילציה",
+      "מתקמפל ומדפיס 0",
+      "RuntimeException",
+      "תלוי JVM"
+    ],
+    "a": "A",
+    "e": "אין ctor ללא פרמטרים."
+  },
+  {
+    "t": 7,
+    "q": "מה יודפס?\n\nclass P{P(){System.out.print(\"P\");}}\nclass C extends P{C(){System.out.print(\"C\");}}\nnew C();",
+    "o": [
+      "PC",
+      "CP",
+      "C",
+      "P"
+    ],
+    "a": "A",
+    "e": "super ctor קודם."
+  },
+  {
+    "t": 8,
+    "q": "מה הפלט?\n\ninterface I{ default int f(){return 5;} }\nclass A implements I{}\nSystem.out.println(new A().f());",
+    "o": [
+      "5",
+      "0",
+      "שגיאת קומפילציה",
+      "null"
+    ],
+    "a": "A",
+    "e": "default method."
+  },
+  {
+    "t": 9,
+    "q": "מה יודפס?\n\nabstract class A{A(){System.out.print(\"A\");}}\nclass B extends A{B(){System.out.print(\"B\");}}\nnew B();",
+    "o": [
+      "AB",
+      "BA",
+      "A",
+      "B"
+    ],
+    "a": "A",
+    "e": "שרשרת בנאים."
+  },
+  {
+    "t": 10,
+    "q": "מה הפלט?\n\nclass A{int v=1;}\nclass B extends A{int v=2;}\nA x=new B();\nSystem.out.println(x.v);",
+    "o": [
+      "1",
+      "2",
+      "שגיאת קומפילציה",
+      "תלוי ריצה"
+    ],
+    "a": "A",
+    "e": "field hiding לפי טיפוס סטטי."
+  },
+  {
+    "t": 11,
+    "q": "מה יודפס?\n\nclass A{ private int x=9; void p(){System.out.println(x);} }\nnew A().p();",
+    "o": [
+      "9",
+      "0",
+      "שגיאת קומפילציה",
+      "NullPointerException"
+    ],
+    "a": "A",
+    "e": "private נגיש במחלקה עצמה."
+  },
+  {
+    "t": 12,
+    "q": "מה הפלט?\n\nclass A{ static int c=1;}\nA a1=new A(); A a2=new A(); a1.c=8;\nSystem.out.println(a2.c);",
+    "o": [
+      "8",
+      "1",
+      "0",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "שדה סטטי משותף."
+  },
+  {
+    "t": 13,
+    "q": "מה יודפס?\n\nclass X{ String f(Object o){return \"O\";} String f(String s){return \"S\";} }\nSystem.out.println(new X().f(null));",
+    "o": [
+      "S",
+      "O",
+      "Ambiguous",
+      "שגיאת ריצה"
+    ],
+    "a": "A",
+    "e": "נבחר overload ספציפי יותר."
+  },
+  {
+    "t": 14,
+    "q": "מה הפלט?\n\nclass A{String f(){return \"A\";}}\nclass B extends A{String f(){return super.f()+\"B\";}}\nSystem.out.println(new B().f());",
+    "o": [
+      "AB",
+      "BA",
+      "B",
+      "A"
+    ],
+    "a": "A",
+    "e": "שימוש ב-super."
+  },
+  {
+    "t": 15,
+    "q": "מה יודפס?\n\nclass A{String f(){return \"A\";}}\nclass B extends A{String f(){return \"B\";}}\nA y=new B();\nSystem.out.println(y.f());",
+    "o": [
+      "B",
+      "A",
+      "שגיאת קומפילציה",
+      "null"
+    ],
+    "a": "A",
+    "e": "פולימורפיזם."
+  },
+  {
+    "t": 16,
+    "q": "מה קורה?\n\nclass A{ void f(int x){} }\nclass B extends A{ @Override void f(Integer x){} }",
+    "o": [
+      "שגיאת קומפילציה",
+      "מתקמפל",
+      "אזהרה בלבד",
+      "RuntimeException"
+    ],
+    "a": "A",
+    "e": "לא override אמיתי."
+  },
+  {
+    "t": 17,
+    "q": "מה הפלט?\n\nlong x=10;\nint y=(int)x;\nSystem.out.println(y);",
+    "o": [
+      "10",
+      "0",
+      "ClassCastException",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "narrowing מפורש."
+  },
+  {
+    "t": 18,
+    "q": "מה יודפס?\n\nclass A{int x=1; void f(int x){this.x=x;}}\nA a=new A(); a.f(7);\nSystem.out.println(a.x);",
+    "o": [
+      "7",
+      "1",
+      "0",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "this.x לשדה."
+  },
+  {
+    "t": 19,
+    "q": "מה יקרה?\n\nList<String> a = new ArrayList<>();\nList<Object> b = a;",
+    "o": [
+      "שגיאת קומפילציה",
+      "מתקמפל",
+      "RuntimeException",
+      "אזהרה בלבד"
+    ],
+    "a": "A",
+    "e": "invariance."
+  },
+  {
+    "t": 20,
+    "q": "מה יודפס?\n\nSet<Integer> s=new HashSet<>();\ns.add(1); s.add(1); s.add(2);\nSystem.out.println(s.size());",
+    "o": [
+      "2",
+      "3",
+      "1",
+      "0"
+    ],
+    "a": "A",
+    "e": "Set ללא כפילויות."
+  },
+  {
+    "t": 21,
+    "q": "מה הפלט?\n\nInteger[] a={3,1,2}; Arrays.sort(a);\nSystem.out.println(Arrays.toString(a));",
+    "o": [
+      "[1, 2, 3]",
+      "[3, 2, 1]",
+      "[1, 3, 2]",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "natural order."
+  },
+  {
+    "t": 22,
+    "q": "מה יקרה?\n\nList<Integer> l=new ArrayList<>(List.of(1,2,3));\nfor(Integer x:l){ if(x==2) l.remove(x); }",
+    "o": [
+      "ConcurrentModificationException",
+      "מדפיס 1 2 3",
+      "שגיאת קומפילציה",
+      "לא קורה כלום"
+    ],
+    "a": "A",
+    "e": "fail-fast iterator."
+  },
+  {
+    "t": 23,
+    "q": "מה יודפס?\n\nenum E{A,B}\nSystem.out.println(E.A==E.valueOf(\"A\"));",
+    "o": [
+      "true",
+      "false",
+      "NullPointerException",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "enum constants singleton."
+  },
+  {
+    "t": 24,
+    "q": "מה הפלט?\n\ntry{throw new RuntimeException();}\ncatch(Exception e){System.out.print(\"C\");}\nfinally{System.out.print(\"F\");}",
+    "o": [
+      "CF",
+      "FC",
+      "C",
+      "F"
+    ],
+    "a": "A",
+    "e": "catch ואז finally."
+  },
+  {
+    "t": 25,
+    "q": "מה יודפס?\n\nclass R implements AutoCloseable{public void close(){System.out.print(\"X\");}}\ntry(R r=new R()){System.out.print(\"B\");}",
+    "o": [
+      "BX",
+      "XB",
+      "B",
+      "X"
+    ],
+    "a": "A",
+    "e": "close בסיום try."
+  },
+  {
+    "t": 26,
+    "q": "מה הפלט?\n\nclass O{ static class N{ int f(){return 5;} } }\nSystem.out.println(new O.N().f());",
+    "o": [
+      "5",
+      "0",
+      "שגיאת קומפילציה",
+      "NullPointerException"
+    ],
+    "a": "A",
+    "e": "static nested class."
+  },
+  {
+    "t": 27,
+    "q": "מה יודפס?\n\nRunnable r=new Runnable(){public void run(){System.out.print(this!=null);}};\nr.run();",
+    "o": [
+      "true",
+      "false",
+      "שגיאת קומפילציה",
+      "NullPointerException"
+    ],
+    "a": "A",
+    "e": "this של anonymous class."
+  },
+  {
+    "t": 28,
+    "q": "מה יהיה הפלט?\n\nRunnable r=()->System.out.print(\"L\");\nr.run();",
+    "o": [
+      "L",
+      "lambda",
+      "true",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "lambda מפעילה run."
+  },
+  {
+    "t": 29,
+    "q": "מה יודפס?\n\nSystem.out.print((char)('A'+1));\nSystem.out.print((byte)257);",
+    "o": [
+      "B1",
+      "B-1",
+      "B257",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "257 כ-byte הוא 1."
+  },
+  {
+    "t": 30,
+    "q": "מה הפלט?\n\nString a=\"hi\"; String b=\"h\"+\"i\";\nSystem.out.print(a==b);",
+    "o": [
+      "true",
+      "false",
+      "NullPointerException",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "constant folding + string pool."
+  },
+  {
+    "t": 31,
+    "q": "מה יודפס?\n\nfinal int[] a={1};\na[0]=9;\nSystem.out.println(a[0]);",
+    "o": [
+      "9",
+      "1",
+      "שגיאת קומפילציה",
+      "NullPointerException"
+    ],
+    "a": "A",
+    "e": "final על reference."
+  },
+  {
+    "t": 32,
+    "q": "מה הפלט?\n\nclass A{}\nSystem.out.println(new A().toString().contains(\"@\"));",
+    "o": [
+      "true",
+      "false",
+      "שגיאת קומפילציה",
+      "NullPointerException"
+    ],
+    "a": "A",
+    "e": "Object.toString כולל @."
+  },
+  {
+    "t": 33,
+    "q": "מה יודפס?\n\nObject o=null;\nSystem.out.println(o);",
+    "o": [
+      "null",
+      "NullPointerException",
+      "שגיאת קומפילציה",
+      "ריק"
+    ],
+    "a": "A",
+    "e": "String.valueOf(null)."
+  },
+  {
+    "t": 34,
+    "q": "מה הפלט?\n\nstatic void f(int[] a){ a=new int[]{9}; }\nint[] x={1}; f(x); System.out.println(x[0]);",
+    "o": [
+      "1",
+      "9",
+      "0",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "pass-by-value של reference."
+  },
+  {
+    "t": 35,
+    "q": "מה יקרה?\n\nint x=Integer.parseInt(\"x\");",
+    "o": [
+      "NumberFormatException בזמן ריצה",
+      "שגיאת קומפילציה",
+      "ClassCastException",
+      "NullPointerException"
+    ],
+    "a": "A",
+    "e": "מתקמפל ונכשל בריצה."
+  },
+  {
+    "t": 36,
+    "q": "מה הפלט?\n\nint a=1,b=1;\nSystem.out.println(a+b);",
+    "o": [
+      "2",
+      "11",
+      "שגיאת קומפילציה",
+      "תלוי JVM"
+    ],
+    "a": "A",
+    "e": "קריאות בסיסית ונכונה."
+  },
+  {
+    "t": 37,
+    "q": "מה יודפס?\n\ninterface Repo{String get();}\nclass MemRepo implements Repo{public String get(){return \"ok\";}}\nRepo r=new MemRepo();\nSystem.out.println(r.get());",
+    "o": [
+      "ok",
+      "Repo",
+      "null",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "DIP דרך abstraction."
+  },
+  {
+    "t": 38,
+    "q": "מה הפלט?\n\ninterface S{int calc(int x);}\nclass Add1 implements S{public int calc(int x){return x+1;}}\nSystem.out.println(new Add1().calc(4));",
+    "o": [
+      "5",
+      "4",
+      "1",
+      "שגיאת קומפילציה"
+    ],
+    "a": "A",
+    "e": "Strategy בסיסי."
   }
 ];
