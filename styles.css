@@ -92,7 +92,11 @@ input[type="number"] {
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.24);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: start;
 }
+
+.question[dir="rtl"] { direction: rtl; text-align: right; }
+.question[dir="ltr"] { direction: ltr; text-align: left; }
 
 .options {
   margin-top: 12px;
@@ -110,6 +114,9 @@ input[type="number"] {
   background: rgba(255, 255, 255, 0.04);
 }
 
+.option span[dir="rtl"] { direction: rtl; text-align: right; }
+.option span[dir="ltr"] { direction: ltr; text-align: left; }
+
 .actions {
   margin-top: 12px;
   display: flex;
@@ -123,7 +130,11 @@ input[type="number"] {
   padding: 10px;
   background: rgba(0, 0, 0, 0.24);
   border: 1px solid transparent;
+  text-align: start;
 }
+
+.feedback[dir="rtl"] { direction: rtl; text-align: right; }
+.feedback[dir="ltr"] { direction: ltr; text-align: left; }
 .feedback.ok { border-color: rgba(45, 212, 191, 0.5); }
 .feedback.bad { border-color: rgba(251, 113, 133, 0.5); }
 

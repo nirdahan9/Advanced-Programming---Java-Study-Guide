@@ -5,10 +5,10 @@ const $ = (id) => document.getElementById(id);
 const countInput = $("countInput");
 const shuffleInput = $("shuffleInput");
 const startBtn = $("startBtn");
+const startAllBtn = $("startAllBtn");
 const quizPanel = $("quizPanel");
 const summaryPanel = $("summaryPanel");
 const progressEl = $("progress");
-const topicEl = $("topic");
 const questionEl = $("question");
 const optionsEl = $("options");
 const submitBtn = $("submitBtn");
@@ -22,6 +22,15 @@ let session = [];
 let index = 0;
 let score = 0;
 const wrongByTopic = new Map();
+
+function getDirection(text) {
+  return /[\u0590-\u05FF]/.test(String(text || "")) ? "rtl" : "ltr";
+}
+
+function applyDirection(el, text) {
+  if (!el) return;
+  el.setAttribute("dir", getDirection(text));
+}
 
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -42,8 +51,8 @@ function renderQuestion() {
   }
 
   progressEl.textContent = `שאלה ${index + 1} מתוך ${session.length}`;
-  topicEl.textContent = `נושא: ${TOPICS[q.t]}`;
   questionEl.textContent = q.q;
+  applyDirection(questionEl, q.q);
   feedbackEl.textContent = "";
   feedbackEl.className = "feedback";
   nextBtn.disabled = true;
@@ -60,6 +69,9 @@ function renderQuestion() {
       `;
     })
     .join("");
+
+  const optionTexts = optionsEl.querySelectorAll(".option span");
+  optionTexts.forEach((el, i) => applyDirection(el, q.o[i]));
 }
 
 function getSelected() {
@@ -79,9 +91,11 @@ function submitAnswer() {
     score += 1;
     feedbackEl.classList.add("ok");
     feedbackEl.textContent = `נכון ✅ | ${q.e}`;
+    applyDirection(feedbackEl, q.e);
   } else {
     feedbackEl.classList.add("bad");
     feedbackEl.textContent = `לא נכון ❌ | תשובה נכונה: ${q.a}. ${q.e}`;
+    applyDirection(feedbackEl, q.e);
     const key = TOPICS[q.t];
     wrongByTopic.set(key, (wrongByTopic.get(key) || 0) + 1);
   }
@@ -107,7 +121,9 @@ function showSummary() {
   const rows = [...wrongByTopic.entries()].sort((a, b) => b[1] - a[1]);
   weakEl.innerHTML =
     "כדאי לחזור על הנושאים:<ul>" +
-    rows.map(([topic, c]) => `<li>${topic} (${c})</li>`).join("") +
+    rows
+      .map(([topic, c]) => `<li dir="${getDirection(topic)}">${topic} (${c})</li>`)
+      .join("") +
     "</ul>";
 }
 
@@ -129,6 +145,10 @@ function startQuiz() {
 }
 
 startBtn.addEventListener("click", startQuiz);
+startAllBtn.addEventListener("click", () => {
+  countInput.value = QUESTIONS.length;
+  startQuiz();
+});
 submitBtn.addEventListener("click", submitAnswer);
 nextBtn.addEventListener("click", nextQuestion);
 restartBtn.addEventListener("click", startQuiz);
