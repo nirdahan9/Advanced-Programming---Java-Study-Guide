@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Java Exam Quiz</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="hero">
+        <h1>Java Exam Quiz</h1>
+        <p>תרגול שאלות אמריקאיות קשות — מותאם למחשב ולמובייל</p>
+      </header>
+
+      <section class="panel controls">
+        <label>
+          מספר שאלות
+          <input id="countInput" type="number" min="1" max="300" value="20" />
+        </label>
+
+        <label class="inline">
+          <input id="shuffleInput" type="checkbox" checked />
+          ערבוב שאלות
+        </label>
+
+        <button id="startBtn" class="btn primary">התחל תרגול</button>
+      </section>
+
+      <section id="quizPanel" class="panel hidden">
+        <div id="progress" class="progress"></div>
+        <h2 id="topic" class="topic"></h2>
+        <pre id="question" class="question"></pre>
+
+        <form id="options" class="options"></form>
+
+        <div class="actions">
+          <button id="submitBtn" type="button" class="btn primary">בדוק תשובה</button>
+          <button id="nextBtn" type="button" class="btn" disabled>הבא</button>
+        </div>
+
+        <div id="feedback" class="feedback"></div>
+      </section>
+
+      <section id="summaryPanel" class="panel hidden">
+        <h2>סיכום</h2>
+        <p id="score" class="score"></p>
+        <div id="weak"></div>
+        <button id="restartBtn" class="btn primary">התחל מחדש</button>
+      </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
